@@ -65,6 +65,28 @@ def login():
     return render_template('login.html', error=error)
 
 
+def get_uploaded_images():
+    uploads = []
+    for subdir, dirs, files in os.walk(app.config['UPLOAD_FOLDER']):
+        for file in files:
+            if file.split('.')[-1] in allowed_uploads:
+                uploads.append(file)
+
+    return uploads
+    
+@app.route('/files')
+def files():
+    if not session.get('logged_in'):
+        abort(401)
+
+    picture_file_list = get_uploaded_images()
+    print(picture_file_list)
+    return render_template('files.html', uploaded_images=picture_file_list)
+
+
+
+
+
 @app.route('/logout')
 def logout():
     session.pop('logged_in', None)
@@ -75,6 +97,8 @@ def logout():
 ###
 # The functions below should be applicable to all Flask apps.
 ###
+
+
 
 # Flash errors from the form if validation fails
 def flash_errors(form):

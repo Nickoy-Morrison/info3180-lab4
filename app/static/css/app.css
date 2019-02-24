@@ -1,3 +1,16 @@
 body {
     padding-top: 5rem;
 }
+.viewPictures-container{
+        display: grid;
+        grid-template-columns: repeat(3, 250px);
+        grid-template-row: repeat(3, 250px);
+        grit-auto-rows: 250px;
+        grid-gap: 20px;
+}
+
+.display-grid-pic{
+    width: 250px;
+	height: 250px;
+	border: 1px solid #999999;
+}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+
+{% block main %}
+
+{% include 'flash_messages.html' %}
+
+<div class="viewPictures-container">
+
+    {% for image in uploaded_images%}
+    <div>
+
+        <img src="{{url_for('static', filename= 'uploads/' +image) }}" class='display-grid-pic' >
+
+    </div>
+    {% endfor %}
+
+</div>
+
+
+
+{% endblock %}
